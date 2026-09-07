@@ -111,4 +111,13 @@ function buildCard(name,partNumber,functionText,torqueRows,toolRows,videoRows){c
 function buildModule(section){if(section.dataset.mergedMaterialCards)return;const details=[...section.querySelectorAll(':scope > details')];const composition=findDetails(section,'组成部分与功能');const torque=findDetails(section,'紧固扭矩清单');const tools=findDetails(section,'工具清单');const video=findDetails(section,'拆装视频及注意事项');const compRows=tableRows(composition?.querySelector('table'));const torqueRows=tableRows(torque?.querySelector('table'));const toolRows=tableRows(tools?.querySelector('table'));const videoRows=tableRows(video?.querySelector('table'));const names=[];const addName=name=>{if(name&&!names.includes(name))names.push(name)};compRows.forEach(row=>addName(row.values[1]));torqueRows.forEach(row=>addName(row.values[1]));toolRows.forEach(row=>addName(row.values[1]));videoRows.forEach(row=>addName(row.values[1]));const wrap=document.createElement('div');wrap.className='merged-material-cards';wrap.dataset.mergedMaterialCards='true';wrap.append(makeSectionTitle('按物料查看'),Object.assign(document.createElement('p'),{className:'merged-module-subtitle',textContent:'每张卡片集中显示物料功能、物料号、自维修状态、紧固信息、工具、视频与注意事项。'}));const grid=document.createElement('div');grid.className='material-card-grid';names.forEach((name,index)=>{const cardComp=compRows.find(row=>row.values[1]===name);const cardTorque=torqueRows.filter(row=>row.values[1]===name);const cardTools=toolRows.filter(row=>row.values[1]===name);const cardVideo=videoRows.filter(row=>row.values[1]===name);grid.appendChild(buildCard(name,cardComp?.values[0]||String(index+1),cardComp?.values[2]||'',cardTorque,cardTools,cardVideo))});wrap.appendChild(grid);const structure=details.find(item=>clean(item.querySelector('summary')?.textContent).includes('总成结构图示'));(structure||details[0]||section.querySelector('.section-heading')).after(wrap);[composition,torque,tools,video].filter(Boolean).forEach(item=>{item.classList.add('merged-source-details');item.hidden=true});section.dataset.mergedMaterialCards='true'}
 moduleIds.forEach(id=>{const section=document.getElementById(id);if(section)buildModule(section)});
 })();
-</script></body></html>
+</script>
+<a class="nav-home-fab" href="../" aria-label="返回手册导航 / Back to manual portal">导航</a>
+<style>
+.nav-home-fab{display:flex;align-items:center;justify-content:center;position:fixed;right:14px;bottom:18px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1677ff,#26c6da);color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 8px 22px rgba(8,26,44,.35);z-index:900;letter-spacing:1px}
+.nav-home-fab:hover{filter:brightness(1.08)}
+.nav-home-fab:active{transform:scale(.94)}
+@media print{.nav-home-fab{display:none!important}}
+@media (max-width:620px){.nav-home-fab{width:48px;height:48px;right:12px;bottom:16px}}
+</style>
+</body></html>

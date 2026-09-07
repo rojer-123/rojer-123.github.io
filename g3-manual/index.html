@@ -3084,11 +3084,14 @@ window.addEventListener('message', event => {
   }
 });
 
-document.getElementById('g3ExplodedClose').addEventListener('click', closeG3ExplodedView);
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && document.getElementById('g3ExplodedOverlay').classList.contains('open')) {
-    closeG3ExplodedView();
-  }
+document.addEventListener('DOMContentLoaded', function () {
+  var closeBtn = document.getElementById('g3ExplodedClose');
+  if (closeBtn) closeBtn.addEventListener('click', closeG3ExplodedView);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && document.getElementById('g3ExplodedOverlay').classList.contains('open')) {
+      closeG3ExplodedView();
+    }
+  });
 });
 </script>
 <div class="g3-exploded-overlay" id="g3ExplodedOverlay" aria-hidden="true">
@@ -3575,6 +3578,12 @@ window.BOM_DATA = {"vehicle":{"code":"AA.05.16.01.0008","name":"九号电动滑�
 </body>
 </html>
 </script>
+<a class="nav-home-fab" href="../" aria-label="返回手册导航 / Back to manual portal"><span class="lang-zh">导航</span><span class="lang-en">Home</span></a>
+<style>
+.nav-home-fab{display:flex;align-items:center;justify-content:center;position:fixed;right:14px;bottom:18px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1677ff,#26c6da);color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 8px 22px rgba(8,26,44,.35);z-index:9000;letter-spacing:1px}
+.nav-home-fab:active{transform:scale(.94)}
+@media print{.nav-home-fab{display:none!important}}
+</style>
 <script id="wb-mobile-nav">
 (function(){
   var sidebar=document.getElementById('sidebar');
