@@ -1,35 +1,60 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>售后维修手册导航</title>
+<title>Service Manual Portal</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#0a1929;color:#e8f0f7;padding:20px}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:"Segoe UI","Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#0a1929;color:#e8f0f7;padding:20px}
 .wrap{width:100%;max-width:560px}
+.lang-toggle{display:flex;justify-content:flex-end;margin-bottom:8px}
+.lang-toggle button{background:#12263c;color:#8ba3b9;border:1px solid #1f3a57;border-radius:16px;padding:4px 14px;font-size:12px;cursor:pointer;min-height:32px}
+.lang-toggle button.on{color:#fff;border-color:#1677ff;background:#1677ff33}
 h1{font-size:22px;text-align:center;margin-bottom:6px}
 .sub{text-align:center;font-size:12px;letter-spacing:2px;color:#7d95ab;margin-bottom:32px}
 a.card{display:flex;align-items:center;gap:16px;padding:20px;border-radius:14px;background:#12263c;border:1px solid #1f3a57;text-decoration:none;color:inherit;margin-bottom:14px;transition:transform .15s,border-color .15s}
 a.card:hover{transform:translateY(-2px);border-color:#1677ff}
-.icon{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,#1677ff,#26c6da);display:grid;place-items:center;font-weight:900;font-size:15px;flex:none}
+.icon{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,#1677ff,#26c6da);display:grid;place-items:center;font-weight:900;font-size:15px;flex:none;color:#fff}
 .card h2{font-size:16px;margin-bottom:4px}
 .card p{font-size:12px;color:#8ba3b9}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>售后维修手册导航</h1>
-  <div class="sub">SERVICE MANUAL PORTAL</div>
+  <div class="lang-toggle"><button id="langBtn" type="button" onclick="toggleLang()">中文</button></div>
+  <h1 data-en="Service Manual Portal" data-zh="售后维修手册导航">Service Manual Portal</h1>
+  <div class="sub" data-en="AFTER-SALES SERVICE MANUALS" data-zh="售后维修手册导航">AFTER-SALES SERVICE MANUALS</div>
   <a class="card" href="g3-manual/">
     <div class="icon">G3</div>
-    <div><h2>G3 荷兰版维修手册</h2><p>G3 Manual (NL) · 含爆炸图交互查看</p></div>
+    <div><h2 data-en="G3 Service Manual (NL)" data-zh="G3 荷兰版维修手册">G3 Service Manual (NL)</h2><p data-en="Interactive exploded view &amp; service BOM" data-zh="含爆炸图交互查看与服务 BOM">Interactive exploded view &amp; service BOM</p></div>
   </a>
   <a class="card" href="zt3proii-max-manual/">
     <div class="icon">ZT3</div>
-    <div><h2>ZT3 Pro II &amp; MAX 维修与故障诊断手册</h2><p>整合版 · 手机端适配</p></div>
+    <div><h2 data-en="ZT3 Pro II &amp; MAX Service &amp; Diagnostic Manual" data-zh="ZT3 Pro II &amp; MAX 维修与故障诊断手册">ZT3 Pro II &amp; MAX Service &amp; Diagnostic Manual</h2><p data-en="Combined edition · mobile friendly" data-zh="整合版 · 手机端适配">Combined edition · mobile friendly</p></div>
   </a>
 </div>
+<script>
+(function () {
+  function apply(lang) {
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = lang === 'zh' ? '售后维修手册导航' : 'Service Manual Portal';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+    });
+    var btn = document.getElementById('langBtn');
+    if (btn) { btn.textContent = lang === 'zh' ? 'English' : '中文'; btn.classList.toggle('on', lang === 'zh'); }
+  }
+  window.toggleLang = function () {
+    var next = document.documentElement.lang === 'zh-CN' ? 'en' : 'zh';
+    try { localStorage.setItem('portalLang', next); } catch (e) {}
+    apply(next);
+  };
+  var saved = 'en';
+  try { saved = localStorage.getItem('portalLang') || 'en'; } catch (e) {}
+  apply(saved);
+})();
+</script>
 <link rel="prefetch" href="g3-manual/" as="document">
 <link rel="prefetch" href="zt3proii-max-manual/" as="document">
 <script>
