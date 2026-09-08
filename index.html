@@ -30,5 +30,24 @@ a.card:hover{transform:translateY(-2px);border-color:#1677ff}
     <div><h2>ZT3 Pro II &amp; MAX 维修与故障诊断手册</h2><p>整合版 · 手机端适配</p></div>
   </a>
 </div>
+<link rel="prefetch" href="g3-manual/" as="document">
+<link rel="prefetch" href="zt3proii-max-manual/" as="document">
+<script>
+(function () {
+  var done = false;
+  function warm(url) {
+    try { fetch(url, { cache: "default", priority: "low" }).catch(function () {}); } catch (e) {}
+  }
+  function start() {
+    if (done) return;
+    done = true;
+    setTimeout(function () { warm("zt3proii-max-manual/"); }, 800);
+    setTimeout(function () { warm("g3-manual/"); }, 2500);
+  }
+  if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 4000 });
+  else setTimeout(start, 2000);
+  window.addEventListener("load", function () { setTimeout(start, 3000); });
+})();
+</script>
 </body>
 </html>
