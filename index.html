@@ -6,57 +6,265 @@
 <title>Service Manual Portal</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:"Segoe UI","Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#0a1929;color:#e8f0f7;padding:20px}
-.wrap{width:100%;max-width:560px}
-.lang-toggle{display:flex;justify-content:flex-end;margin-bottom:8px}
-.lang-toggle button{background:#12263c;color:#8ba3b9;border:1px solid #1f3a57;border-radius:16px;padding:4px 14px;font-size:12px;cursor:pointer;min-height:32px}
+html,body{height:100%}
+body{font-family:"Segoe UI","Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#0a1929;color:#e8f0f7;display:flex;flex-direction:column;overflow:hidden}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid #1c3247;background:#0d2033;flex:none}
+.brand h1{font-size:17px;font-weight:700;letter-spacing:.3px}
+.brand .sub{font-size:11px;letter-spacing:1.6px;color:#7d95ab;margin-top:2px}
+.lang-toggle button{background:#12263c;color:#8ba3b9;border:1px solid #1f3a57;border-radius:16px;padding:6px 14px;font-size:12px;cursor:pointer;min-height:34px}
 .lang-toggle button.on{color:#fff;border-color:#1677ff;background:#1677ff33}
-h1{font-size:22px;text-align:center;margin-bottom:6px}
-.sub{text-align:center;font-size:12px;letter-spacing:2px;color:#7d95ab;margin-bottom:32px}
-a.card{display:flex;align-items:center;gap:16px;padding:20px;border-radius:14px;background:#12263c;border:1px solid #1f3a57;text-decoration:none;color:inherit;margin-bottom:14px;transition:transform .15s,border-color .15s}
-a.card:hover{transform:translateY(-2px);border-color:#1677ff}
-.icon{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,#1677ff,#26c6da);display:grid;place-items:center;font-weight:900;font-size:15px;flex:none;color:#fff}
-.card h2{font-size:16px;margin-bottom:4px}
-.card p{font-size:12px;color:#8ba3b9}
+.layout{display:flex;flex:1;min-height:0}
+
+/* 左侧系列列表 */
+.sidebar{width:236px;flex:none;background:#0c1c2e;border-right:1px solid #1c3247;padding:14px 12px;overflow-y:auto}
+.side-title{font-size:11px;letter-spacing:1.4px;color:#6b8199;padding:0 10px 10px}
+.series{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px 12px;border:1px solid transparent;border-radius:11px;background:transparent;color:#c3d4e2;font-size:13.5px;font-family:inherit;cursor:pointer;margin-bottom:6px;min-height:52px;transition:background .15s,border-color .15s}
+.series:hover{background:#12263c}
+.series.active{background:#12263c;border-color:#1677ff;color:#fff}
+.series .dot{width:8px;height:8px;border-radius:50%;background:#26c6da;flex:none}
+.series.active .dot{background:#1677ff;box-shadow:0 0 0 3px #1677ff33}
+.series .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+
+/* 右侧资料列表 */
+.content{flex:1;min-width:0;overflow-y:auto;padding:22px 24px 40px}
+.content-head{margin-bottom:18px}
+.content-head h2{font-size:19px;margin-bottom:6px}
+.content-head p{font-size:12.5px;color:#8ba3b9}
+.group{margin-top:22px}
+.group-title{font-size:12px;letter-spacing:1.4px;color:#6b8199;margin-bottom:10px;padding-left:2px}
+.doc{display:flex;align-items:center;gap:16px;padding:17px 18px;border-radius:13px;background:#12263c;border:1px solid #1f3a57;text-decoration:none;color:inherit;margin-bottom:12px;transition:transform .15s,border-color .15s;min-height:74px}
+.doc:hover{transform:translateY(-2px);border-color:#1677ff}
+.doc .badge{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,#1677ff,#26c6da);display:grid;place-items:center;font-weight:900;font-size:13px;flex:none;color:#fff}
+.doc .meta{min-width:0;flex:1}
+.doc .meta h3{font-size:15px;margin-bottom:5px}
+.doc .meta span{font-size:12px;color:#8ba3b9}
+.doc .arrow{flex:none;color:#4d6a86;font-size:20px;line-height:1}
+.empty{padding:26px 18px;border:1px dashed #26405a;border-radius:13px;color:#7d95ab;font-size:13px;text-align:center}
+
+.backdrop{display:none;position:fixed;inset:0;background:#0009;z-index:40}
+.hint{font-size:11.5px;color:#6b8199;margin-top:26px;text-align:center}
+
+/* 手机端：抽屉式 */
+@media (max-width:720px){
+  .layout{position:relative}
+  .sidebar{position:fixed;top:0;bottom:0;left:0;z-index:50;transform:translateX(-100%);transition:transform .22s ease;width:80vw;max-width:300px;padding-top:18px;box-shadow:6px 0 24px #0006}
+  body.nav-open .sidebar{transform:translateX(0)}
+  body.nav-open .backdrop{display:block}
+  .content{padding:16px 14px 40px}
+  .content-head h2{font-size:17px}
+  .doc{padding:14px 14px;gap:12px;min-height:68px}
+  .doc .badge{width:42px;height:42px;font-size:12px}
+  .doc .meta h3{font-size:14px}
+  .content-head{padding-right:4px}
+}
+@media (min-width:721px){ .menu-btn{display:none} }
+.menu-btn{align-items:center;justify-content:center;width:40px;height:40px;flex:none;border-radius:10px;border:1px solid #1f3a57;background:#12263c;color:#c3d4e2;font-size:17px;cursor:pointer;font-family:inherit}
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:12px;min-width:0">
+    <button class="menu-btn" type="button" aria-label="Menu" onclick="toggleNav()">☰</button>
+    <div class="brand">
+      <h1 data-en="Service Manual Portal" data-zh="售后维修手册导航">Service Manual Portal</h1>
+      <div class="sub" data-en="AFTER-SALES SERVICE MANUALS" data-zh="售后维修资料平台">AFTER-SALES SERVICE MANUALS</div>
+    </div>
+  </div>
   <div class="lang-toggle"><button id="langBtn" type="button" onclick="toggleLang()">中文</button></div>
-  <h1 data-en="Service Manual Portal" data-zh="售后维修手册导航">Service Manual Portal</h1>
-  <div class="sub" data-en="AFTER-SALES SERVICE MANUALS" data-zh="售后维修手册导航">AFTER-SALES SERVICE MANUALS</div>
-  <a class="card" href="g3-manual/">
-    <div class="icon">G3</div>
-    <div><h2 data-en="G3 Service Manual (NL)" data-zh="G3 荷兰版维修手册">G3 Service Manual (NL)</h2><p data-en="Interactive exploded view &amp; service BOM" data-zh="含爆炸图交互查看与服务 BOM">Interactive exploded view &amp; service BOM</p></div>
-  </a>
-  <a class="card" href="zt3proii-max-manual/">
-    <div class="icon">ZT3</div>
-    <div><h2 data-en="ZT3 Pro II &amp; MAX Service &amp; Diagnostic Manual" data-zh="ZT3 Pro II &amp; MAX 维修与故障诊断手册">ZT3 Pro II &amp; MAX Service &amp; Diagnostic Manual</h2><p data-en="Combined edition · mobile friendly" data-zh="整合版 · 手机端适配">Combined edition · mobile friendly</p></div>
-  </a>
 </div>
+
+<div class="layout">
+  <div class="backdrop" onclick="toggleNav()"></div>
+  <nav class="sidebar" id="sidebar">
+    <div class="side-title" data-en="PRODUCT SERIES" data-zh="产品系列">PRODUCT SERIES</div>
+    <div id="seriesList"></div>
+  </nav>
+
+  <main class="content">
+    <div class="content-head">
+      <h2 id="seriesName"></h2>
+      <p id="seriesDesc"></p>
+    </div>
+    <div id="docGroups"></div>
+    <div class="hint" data-en="Documents open in a new tab · mobile friendly" data-zh="资料在新标签页打开 · 已适配手机端">Documents open in a new tab · mobile friendly</div>
+  </main>
+</div>
+
 <script>
-(function () {
-  function apply(lang) {
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.title = lang === 'zh' ? '售后维修手册导航' : 'Service Manual Portal';
-    document.querySelectorAll('[data-en]').forEach(function (el) {
-      el.innerHTML = lang === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
-    });
-    var btn = document.getElementById('langBtn');
-    if (btn) { btn.textContent = lang === 'zh' ? 'English' : '中文'; btn.classList.toggle('on', lang === 'zh'); }
+var DATA = [
+  {
+    id: "g3",
+    nameEn: "Segway Scooter G3 Series",
+    nameZh: "Segway 滑板车 G3 系列",
+    descEn: "Service documents for the Segway G3 scooter series.",
+    descZh: "Segway G3 系列滑板车的售后维修资料。",
+    groups: [
+      {
+        titleEn: "SERVICE & DIAGNOSTIC MANUAL",
+        titleZh: "维修与故障诊断手册",
+        docs: [
+          {
+            badge: "G3",
+            titleEn: "G3 Service Manual (NL)",
+            titleZh: "G3 荷兰版维修手册",
+            descEn: "Interactive exploded view & service BOM",
+            descZh: "含爆炸图交互查看与服务 BOM",
+            href: "g3-manual/"
+          }
+        ]
+      },
+      {
+        titleEn: "TRAINING MATERIAL",
+        titleZh: "培训材料",
+        docs: []
+      }
+    ]
+  },
+  {
+    id: "zt3",
+    nameEn: "Segway Scooter ZT3 Series",
+    nameZh: "Segway 滑板车 ZT3 系列",
+    descEn: "Service documents for the Segway ZT3 scooter series.",
+    descZh: "Segway ZT3 系列滑板车的售后维修资料。",
+    groups: [
+      {
+        titleEn: "SERVICE & DIAGNOSTIC MANUAL",
+        titleZh: "维修与故障诊断手册",
+        docs: [
+          {
+        badge: "ZT3",
+        titleEn: "ZT3 Pro II & MAX Service & Diagnostic Manual",
+        titleZh: "ZT3 Pro II & MAX 维修与故障诊断手册",
+        descEn: "Combined edition",
+        descZh: "整合版",
+        href: "ZT3-manual/"
+      }
+        ]
+      },
+      {
+        titleEn: "TRAINING MATERIAL",
+        titleZh: "培训材料",
+        docs: []
+      }
+    ]
+  },
+  {
+    id: "e3",
+    nameEn: "Segway Scooter E3 Series",
+    nameZh: "Segway 滑板车 E3 系列",
+    descEn: "Service documents for the Segway E3 scooter series.",
+    descZh: "Segway E3 系列滑板车的售后维修资料。",
+    groups: [
+      {
+        titleEn: "SERVICE & DIAGNOSTIC MANUAL",
+        titleZh: "维修与故障诊断手册",
+        docs: [
+          {
+            badge: "E3",
+            titleEn: "E3 Service & Diagnostic Manual",
+            titleZh: "E3 维修与故障诊断手册",
+            descEn: "Interactive exploded view & service BOM",
+            descZh: "含爆炸图交互查看与服务 BOM",
+            href: "E3-manual/"
+          }
+        ]
+      },
+      {
+        titleEn: "TRAINING MATERIAL",
+        titleZh: "培训材料",
+        docs: []
+      }
+    ]
   }
-  window.toggleLang = function () {
-    var next = document.documentElement.lang === 'zh-CN' ? 'en' : 'zh';
-    try { localStorage.setItem('portalLang', next); } catch (e) {}
-    apply(next);
-  };
-  var saved = 'en';
-  try { saved = localStorage.getItem('portalLang') || 'en'; } catch (e) {}
-  apply(saved);
-})();
+];
+
+var LANG = "en";
+var CURRENT = DATA[0].id;
+
+function t(node, key) { return node[LANG === "zh" ? key + "Zh" : key + "En"]; }
+
+function renderSeries() {
+  var box = document.getElementById("seriesList");
+  box.innerHTML = "";
+  DATA.forEach(function (s) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "series" + (s.id === CURRENT ? " active" : "");
+    b.onclick = function () { selectSeries(s.id); };
+    b.innerHTML = '<span class="dot"></span><span class="txt"><span>' + t(s, "name") + '</span></span>';
+    box.appendChild(b);
+  });
+}
+
+function renderContent() {
+  var s = DATA.filter(function (x) { return x.id === CURRENT; })[0];
+  if (!s) return;
+  document.getElementById("seriesName").textContent = t(s, "name");
+  document.getElementById("seriesDesc").textContent = t(s, "desc");
+  var box = document.getElementById("docGroups");
+  box.innerHTML = "";
+  s.groups.forEach(function (g) {
+    // 培训材料暂无文件时整组隐藏（后续有文件自动出现）
+    if (!g.docs || !g.docs.length) return;
+    var wrap = document.createElement("div");
+    wrap.className = "group";
+    var h = document.createElement("div");
+    h.className = "group-title";
+    h.textContent = t(g, "title");
+    wrap.appendChild(h);
+    g.docs.forEach(function (d) {
+      var a = document.createElement("a");
+      a.className = "doc";
+      a.href = d.href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = '<span class="badge">' + d.badge + '</span><span class="meta"><h3>' +
+        t(d, "title") + '</h3><span>' + t(d, "desc") + '</span></span><span class="arrow">›</span>';
+      wrap.appendChild(a);
+    });
+    box.appendChild(wrap);
+  });
+  if (!box.children.length) {
+    box.innerHTML = '<div class="empty">' +
+      (LANG === "zh" ? "该系列暂无资料。" : "No documents available for this series yet.") + '</div>';
+  }
+}
+
+function selectSeries(id) {
+  CURRENT = id;
+  renderSeries();
+  renderContent();
+  if (document.body.classList.contains("nav-open")) toggleNav();
+}
+
+function renderAll() {
+  var btn = document.getElementById("langBtn");
+  if (btn) { btn.textContent = LANG === "zh" ? "English" : "中文"; btn.classList.toggle("on", LANG === "zh"); }
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.title = LANG === "zh" ? "售后维修手册导航" : "Service Manual Portal";
+  document.querySelectorAll("[data-en]").forEach(function (el) {
+    el.innerHTML = LANG === "zh" ? el.getAttribute("data-zh") : el.getAttribute("data-en");
+  });
+  renderSeries();
+  renderContent();
+}
+
+function toggleLang() {
+  LANG = LANG === "zh" ? "en" : "zh";
+  try { localStorage.setItem("portalLang", LANG); } catch (e) {}
+  renderAll();
+}
+
+function toggleNav() { document.body.classList.toggle("nav-open"); }
+
+try { LANG = localStorage.getItem("portalLang") || "en"; } catch (e) {}
+renderAll();
 </script>
+
 <link rel="prefetch" href="g3-manual/" as="document">
-<link rel="prefetch" href="zt3proii-max-manual/" as="document">
+<link rel="prefetch" href="ZT3-manual/" as="document">
+<link rel="prefetch" href="E3-manual/" as="document">
 <script>
 (function () {
   var done = false;
@@ -66,7 +274,8 @@ a.card:hover{transform:translateY(-2px);border-color:#1677ff}
   function start() {
     if (done) return;
     done = true;
-    setTimeout(function () { warm("zt3proii-max-manual/"); }, 800);
+    setTimeout(function () { warm("ZT3-manual/"); }, 800);
+    setTimeout(function () { warm("E3-manual/"); }, 1500);
     setTimeout(function () { warm("g3-manual/"); }, 2500);
   }
   if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 4000 });
