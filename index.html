@@ -134,11 +134,19 @@ var DATA = [
         docs: [
           {
         badge: "ZT3",
+        titleEn: "ZT3 Service & Diagnostic Manual",
+        titleZh: "ZT3 维修与故障诊断手册",
+        descEn: "Service & diagnostic manual",
+        descZh: "维修与故障诊断手册",
+        href: "ZT3-manual/ZT3-Service%20and%20Troubleshooting%20Manual%209.20.html"
+      },
+          {
+        badge: "MAX",
         titleEn: "ZT3 Pro II & MAX Service & Diagnostic Manual",
         titleZh: "ZT3 Pro II & MAX 维修与故障诊断手册",
         descEn: "Combined edition",
         descZh: "整合版",
-        href: "ZT3-manual/"
+        href: "ZT3-manual/ZT3ProII%26MAX-Service%20and%20Troubleshooting%20Manual%209.18%20(compressed).html"
       }
         ]
       },
@@ -263,7 +271,7 @@ renderAll();
 </script>
 
 <link rel="prefetch" href="g3-manual/" as="document">
-<link rel="prefetch" href="ZT3-manual/" as="document">
+<link rel="prefetch" href="ZT3-manual/ZT3-Service%20and%20Troubleshooting%20Manual%209.20.html" as="document">
 <link rel="prefetch" href="E3-manual/" as="document">
 <script>
 (function () {
@@ -274,7 +282,7 @@ renderAll();
   function start() {
     if (done) return;
     done = true;
-    setTimeout(function () { warm("ZT3-manual/"); }, 800);
+    setTimeout(function () { warm("ZT3-manual/ZT3-Service%20and%20Troubleshooting%20Manual%209.20.html"); }, 800);
     setTimeout(function () { warm("E3-manual/"); }, 1500);
     setTimeout(function () { warm("g3-manual/"); }, 2500);
   }
