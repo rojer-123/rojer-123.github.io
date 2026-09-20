@@ -3339,6 +3339,13 @@ window.BOM_DATA = {"vehicle":{"code":"AA.05.16.01.0008","name":"九号电动滑�
   let __svgDataPromise = null;
   function ensureSvgData() {
     if (window.EMBEDDED_SVGS) return Promise.resolve();
+    try {
+      if (window.parent && window.parent !== window && window.parent.EMBEDDED_SVGS) {
+        window.EMBEDDED_SVGS = window.parent.EMBEDDED_SVGS;
+        window.EMBEDDED_SVGS_GZIP = window.parent.EMBEDDED_SVGS_GZIP;
+        return Promise.resolve();
+      }
+    } catch (error) { /* cross-origin: fall through */ }
     if (__svgDataPromise) return __svgDataPromise;
     let base = location.href;
     try {
@@ -3655,4 +3662,5 @@ window.BOM_DATA = {"vehicle":{"code":"AA.05.16.01.0008","name":"九号电动滑�
 })();
 </script>
 
+<script src="svg-data.js"></script>
 </body></html>
