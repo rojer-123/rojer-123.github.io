@@ -110,7 +110,7 @@ var DATA = [
             titleZh: "G3 荷兰版维修手册",
             descEn: "Interactive exploded view & service BOM",
             descZh: "含爆炸图交互查看与服务 BOM",
-            href: "g3-manual/"
+            href: "g3/manual/"
           }
         ]
       },
@@ -279,7 +279,7 @@ try { LANG = localStorage.getItem("portalLang") || "en"; } catch (e) {}
 renderAll();
 </script>
 
-<link rel="prefetch" href="g3-manual/" as="document">
+<link rel="prefetch" href="g3/manual/" as="document">
 <link rel="prefetch" href="ZT3-manual/ZT3-Service%20and%20Troubleshooting%20Manual%209.20.html" as="document">
 <link rel="prefetch" href="E3-manual/" as="document">
 <script>
@@ -293,7 +293,7 @@ renderAll();
     done = true;
     setTimeout(function () { warm("ZT3-manual/ZT3-Service%20and%20Troubleshooting%20Manual%209.20.html"); }, 800);
     setTimeout(function () { warm("E3-manual/"); }, 1500);
-    setTimeout(function () { warm("g3-manual/"); }, 2500);
+    setTimeout(function () { warm("g3/manual/"); }, 2500);
   }
   if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 4000 });
   else setTimeout(start, 2000);
