@@ -3115,10 +3115,10 @@ document.querySelectorAll('.module-menu-links a').forEach(a=>{
     });
     attrs(lang);
     document.title = lang==='en' ? 'G3 Netherlands Service and Diagnostic Manual' : (lang==='nl' ? 'G3 Nederland Service- en Diagnosehandboek' : 'G3荷兰版维修与故障诊断手册');
-    try{localStorage.setItem('g3-manual-lang',lang)}catch(e){}; requestAnimationFrame(()=>window.repaintG3Flows&&window.repaintG3Flows());; requestAnimationFrame(()=>requestAnimationFrame(()=>window.fitG3Flowcharts&&window.fitG3Flowcharts()));
+    try{localStorage.setItem('g3-manual-lang-nl',lang)}catch(e){}; requestAnimationFrame(()=>window.repaintG3Flows&&window.repaintG3Flows());; requestAnimationFrame(()=>requestAnimationFrame(()=>window.fitG3Flowcharts&&window.fitG3Flowcharts()));
   }
   buttons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-  let saved='zh'; try{saved=localStorage.getItem('g3-manual-lang')||'zh'}catch(e){}
+  let saved='nl'; try{saved=localStorage.getItem('g3-manual-lang-nl')||'nl'}catch(e){}
   setLang(saved);
 })();
 </script>
