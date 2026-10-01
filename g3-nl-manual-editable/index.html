@@ -201,7 +201,8 @@
 .material-trigger{appearance:none;border:0;background:none;padding:0;margin:0;font:inherit;font-weight:800;cursor:pointer;color:#0f4c81;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .material-trigger.has-material:after{content:' ↗';font-size:10px;color:#1677ff}
 .material-trigger.no-material{color:#8b5e00;text-decoration-style:dashed}
-.material-trigger.no-material:after{content:' · 待确认';font-size:10px;color:#a76b08;text-decoration:none}
+.material-trigger.no-material:after{content:' - TBD';font-size:10px;color:#a76b08;text-decoration:none}
+html[data-lang="zh"] .material-trigger.no-material:after{content:' · 待确认'}
 .material-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(2,10,17,.72);z-index:500}
 .material-modal.open{display:flex}
 .material-modal-panel{position:relative;width:min(720px,94vw);max-height:88vh;overflow:auto;background:#fff;border:1px solid #dce5ec;border-radius:18px;padding:24px;box-shadow:0 24px 70px rgba(2,10,17,.28)}
@@ -1052,7 +1053,14 @@ section[id],.manual-section[id],.diagnosis-section[id],.fault[id],.faq-case[id],
 }
 </style>
 
-</head>
+<style id="fix-20261001">
+.flow-svg text.branch-label{paint-order:stroke;stroke:#ffffff;stroke-width:8px;stroke-linejoin:round}
+.flow-svg text.branch-label[x="240"]{transform:translateX(-56px)}
+.flow-svg text.branch-label[x="680"]{transform:translateX(56px)}
+html[data-lang="en"] .material-trigger.no-material:after{content:' - TBD'}
+html[data-lang="nl"] .material-trigger.no-material:after{content:' - n.t.b.'}
+.faq-case>summary .faq-title,.faq-case>summary .faq-title .lang-nl{text-align:left}
+</style></head>
 <body><a id="top"></a><div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><div class="brand-mark"><div class="brand-logo">G3</div><div><h1><span class="lang-zh">G3 荷兰版 维修与诊断手册</span><span class="lang-en">G3 Netherlands Service and Diagnostic Manual</span><span class="lang-nl">G3 Nederland Service- en Diagnostische Handleiding</span></h1><p><span class="lang-zh">维修手册</span><span class="lang-en">SERVICE MANUAL</span><span class="lang-nl">Servicehandleiding</span></p></div></div></div>
 <div aria-label="Language" class="language-switch" role="group">
 <button class="lang-btn" data-lang="zh" type="button">中文</button>
@@ -1160,53 +1168,51 @@ section[id],.manual-section[id],.diagnosis-section[id],.fault[id],.faq-case[id],
 <marker id="ec-arrow" markerHeight="7" markerWidth="7" orient="auto" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 z" fill="#444"></path></marker>
 </defs>
 <rect fill="#fff" height="718" width="1120"></rect>
-<!-- Original diagram layout preserved, labels translated only -->
 <g fill="#222" font-family="Arial, sans-serif" text-anchor="middle">
-<rect fill="#f7f7f7" height="72" stroke="#555" width="118" x="220" y="217"></rect><text font-size="14" x="279" y="258">Control Switch</text>
-<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="373" y="217"></rect><text font-size="13" x="433" y="248">Throttle &amp; Brake Lever</text><text font-size="13" x="433" y="268">3-pin Connectors</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="140" x="209" y="217"></rect><text font-size="13" x="279" y="258">Control Switch</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="150" x="358" y="217"></rect><text font-size="12" x="433" y="248">Throttle &amp; Brake Lever</text><text font-size="12" x="433" y="268">3-pin Connectors</text>
 <rect fill="#8bd13f" height="143" stroke="#555" width="238" x="244" y="349"></rect>
 <line stroke="#555" x1="362" x2="362" y1="420" y2="492"></line>
 <circle cx="362" cy="421" fill="#fff" r="39" stroke="#555"></circle>
-<text font-size="15" x="362" y="426">Dashboard Assembly</text>
+<text font-size="12" x="362" y="416">Dashboard Assembly</text>
 <text font-size="13" x="303" y="462">VCU</text><text font-size="13" x="420" y="462">BLE</text>
 <text font-size="13" x="362" y="364">Display</text>
 <polygon fill="#d6e8a7" points="356,349 325,309 389,309" stroke="#555"></polygon>
-<text font-size="12" transform="rotate(-90 357,334)" x="357" y="334">5V Power</text>
-<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="25" y="385"></rect>
-<text font-size="13" x="85" y="410">Direction Indicators</text><text font-size="13" x="85" y="429">Daytime Running Light</text><text font-size="13" x="85" y="448">Headlight</text>
-<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="244" y="542"></rect><text font-size="14" x="304" y="584">Speaker</text>
-<path d="M410 542 Q390 560 394 613 Q430 626 472 613 Q492 560 468 542 Z" fill="#fff" stroke="#555"></path><text font-size="14" x="432" y="582">Bluetooth</text><text font-size="14" x="432" y="601">Communication</text>
+<text font-size="11" transform="rotate(-90 357 334)" x="357" y="334">5V Power</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="140" x="15" y="385"></rect>
+<text font-size="12" x="85" y="410">Direction Indicators</text><text font-size="11.5" x="85" y="429">Daytime Running Light</text><text font-size="12" x="85" y="448">Headlight</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="244" y="542"></rect><text font-size="13" x="304" y="584">Speaker</text>
+<path d="M410 542 Q390 560 394 613 Q430 626 472 613 Q492 560 468 542 Z" fill="#fff" stroke="#555"></path><text font-size="13" x="432" y="581">Bluetooth</text><text font-size="12" x="432" y="600">Communication</text>
 <polygon fill="#d6e8a7" points="482,374 644,374 644,350 668,421 644,492 644,468 482,468 482,492 458,421 482,350" stroke="#555"></polygon>
-<text font-size="14" x="563" y="427">6-pin Communication &amp; Power Cable</text>
+<text font-size="12.5" x="563" y="416">6-pin Communication</text><text font-size="12.5" x="563" y="434">&amp; Power Cable</text>
 <rect fill="#8d9ed2" height="123" stroke="#555" width="205" x="666" y="360"></rect>
-<text font-size="20" x="768" y="429">Motor Controller MCU</text>
+<text font-size="17" x="768" y="427">Motor Controller MCU</text>
 <rect fill="#f4c99d" height="71" stroke="#555" width="119" x="628" y="207"></rect>
-<text font-size="13" x="688" y="236">12V</text><text font-size="13" x="688" y="255">DC-to-DC Module</text>
+<text font-size="13" x="688" y="236">12V</text><text font-size="12" x="688" y="256">DC-to-DC Module</text>
 <rect fill="#ff3000" height="72" stroke="#555" width="119" x="789" y="206"></rect>
-<text font-size="20" x="848" y="249">Battery BMS</text>
+<text font-size="18" x="848" y="248">Battery BMS</text>
 <rect fill="#f7f7f7" height="71" stroke="#555" width="119" x="789" y="82"></rect>
-<text font-size="13" x="849" y="109">External Charger</text><text font-size="13" x="849" y="130">External Battery</text>
+<text font-size="12.5" x="849" y="109">External Charger</text><text font-size="12.5" x="849" y="130">External Battery</text>
 <rect fill="#b3a5c8" height="71" stroke="#555" width="119" x="982" y="207"></rect>
-<text font-size="14" x="1042" y="249">Built-in Charger</text>
-<rect fill="#f7f7f7" height="71" stroke="#555" width="119" x="947" y="386"></rect>
-<text font-size="13" x="1007" y="411">Left/Right Chassis</text><text font-size="13" x="1007" y="430">Ambient Lights</text><text font-size="13" x="1007" y="449">Taillight</text>
+<text font-size="12.5" x="1042" y="245">Built-in</text><text font-size="12.5" x="1042" y="262">Charger</text>
+<rect fill="#f7f7f7" height="71" stroke="#555" width="160" x="925" y="386"></rect>
+<text font-size="12" x="1005" y="411">Left/Right Chassis</text><text font-size="12" x="1005" y="430">Ambient Lights</text><text font-size="12" x="1005" y="449">Taillight</text>
 <circle cx="768" cy="624" fill="#03b65e" r="58" stroke="#555"></circle>
 <text font-size="25" x="768" y="616">Motor</text>
-<!-- Arrows/labels kept in original locations -->
 <path d="M279 289 L279 349" marker-end="url(#ec-arrow)" stroke="#444"></path>
 <path d="M433 289 L433 349" marker-end="url(#ec-arrow)" stroke="#444"></path>
-<path d="M244 421 L145 421" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="187" y="414">12V Power</text>
+<path d="M244 421 L155 421" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" x="199" y="413">12V Power</text>
 <path d="M304 492 L304 542" marker-end="url(#ec-arrow)" stroke="#444"></path>
 <path d="M432 492 L432 542" marker-end="url(#ec-arrow)" stroke="#444"></path>
-<path d="M675 360 L675 279" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="663" y="323">Battery Power</text>
-<path d="M737 278 L737 360" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="744" y="324">12V Input</text>
+<path d="M675 360 L675 279" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 666 319)" x="666" y="319">Battery Power</text>
+<path d="M737 278 L737 360" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 728 319)" x="728" y="319">12V Input</text>
 <path d="M848 153 L848 206" marker-end="url(#ec-arrow)" stroke="#444"></path>
 <path d="M982 242 L908 242" marker-end="url(#ec-arrow)" stroke="#444"></path>
-<path d="M815 278 L815 360" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="802" y="324">Power Cable</text>
-<path d="M859 360 L859 278" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="874" y="324">Communication</text>
-<path d="M871 421 L947 421" marker-end="url(#ec-arrow)" stroke="#444"></path>
-<path d="M724 483 L724 566" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="706" y="540">Power Cable</text>
-<path d="M798 566 L798 483" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="12" x="821" y="532">Hall &amp; Temperature</text><text font-size="12" x="821" y="550">Hall &amp; NTC</text>
+<path d="M815 278 L815 360" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 806 319)" x="806" y="319">Power Cable</text>
+<path d="M859 360 L859 278" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 850 319)" x="850" y="319">Communication</text>
+<path d="M871 421 L925 421" marker-end="url(#ec-arrow)" stroke="#444"></path>
+<path d="M724 483 L724 566" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 715 524)" x="715" y="524">Power Cable</text>
+<path d="M798 566 L798 483" marker-end="url(#ec-arrow)" stroke="#444"></path><text font-size="11.5" x="862" y="532">Hall &amp; Temperature</text><text font-size="11.5" x="862" y="550">Hall &amp; NTC</text>
 </g>
 </svg>
 </div><div aria-label="Elektrisch functieschema (Nederlands)" class="lang-nl-diagram electrical-exact-nl" role="img">
@@ -1215,53 +1221,51 @@ section[id],.manual-section[id],.diagnosis-section[id],.fault[id],.faq-case[id],
 <marker id="ec-arrow-nl" markerHeight="7" markerWidth="7" orient="auto" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0,0 L10,5 L0,10 z" fill="#444"></path></marker>
 </defs>
 <rect fill="#fff" height="718" width="1120"></rect>
-<!-- Original diagram layout preserved, labels translated only -->
 <g fill="#222" font-family="Arial, sans-serif" text-anchor="middle">
-<rect fill="#f7f7f7" height="72" stroke="#555" width="118" x="220" y="217"></rect><text font-size="14" x="279" y="258">Bedieningsschakelaar</text>
-<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="373" y="217"></rect><text font-size="13" x="433" y="248">Gashandel &amp; remhendel</text><text font-size="13" x="433" y="268">3-pins connectoren</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="140" x="209" y="217"></rect><text font-size="12.5" x="279" y="258">Bedieningsschakelaar</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="150" x="358" y="217"></rect><text font-size="12" x="433" y="248">Gashandel &amp; remhendel</text><text font-size="12" x="433" y="268">3-pins connectoren</text>
 <rect fill="#8bd13f" height="143" stroke="#555" width="238" x="244" y="349"></rect>
 <line stroke="#555" x1="362" x2="362" y1="420" y2="492"></line>
 <circle cx="362" cy="421" fill="#fff" r="39" stroke="#555"></circle>
-<text font-size="15" x="362" y="426">Dashboardunit</text>
+<text font-size="12.5" x="362" y="416">Dashboardunit</text>
 <text font-size="13" x="303" y="462">VCU</text><text font-size="13" x="420" y="462">BLE</text>
 <text font-size="13" x="362" y="364">Display</text>
 <polygon fill="#d6e8a7" points="356,349 325,309 389,309" stroke="#555"></polygon>
-<text font-size="12" transform="rotate(-90 357,334)" x="357" y="334">5V voeding</text>
-<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="25" y="385"></rect>
-<text font-size="13" x="85" y="410">Richtingaanwijzers</text><text font-size="13" x="85" y="429">Dagrijlicht</text><text font-size="13" x="85" y="448">Koplamp</text>
-<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="244" y="542"></rect><text font-size="14" x="304" y="584">Luidspreker</text>
-<path d="M410 542 Q390 560 394 613 Q430 626 472 613 Q492 560 468 542 Z" fill="#fff" stroke="#555"></path><text font-size="14" x="432" y="582">Bluetooth</text><text font-size="14" x="432" y="601">Communicatie</text>
+<text font-size="11" transform="rotate(-90 357 334)" x="357" y="334">5V voeding</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="140" x="15" y="385"></rect>
+<text font-size="12" x="85" y="410">Richtingaanwijzers</text><text font-size="12" x="85" y="429">Dagrijlicht</text><text font-size="12" x="85" y="448">Koplamp</text>
+<rect fill="#f7f7f7" height="72" stroke="#555" width="120" x="244" y="542"></rect><text font-size="13" x="304" y="584">Luidspreker</text>
+<path d="M410 542 Q390 560 394 613 Q430 626 472 613 Q492 560 468 542 Z" fill="#fff" stroke="#555"></path><text font-size="13" x="432" y="581">Bluetooth</text><text font-size="12" x="432" y="600">Communicatie</text>
 <polygon fill="#d6e8a7" points="482,374 644,374 644,350 668,421 644,492 644,468 482,468 482,492 458,421 482,350" stroke="#555"></polygon>
-<text font-size="14" x="563" y="427">6-pins communicatie- &amp; voedingskabel</text>
+<text font-size="12.5" x="563" y="416">6-pins communicatie-</text><text font-size="12.5" x="563" y="434">&amp; voedingskabel</text>
 <rect fill="#8d9ed2" height="123" stroke="#555" width="205" x="666" y="360"></rect>
-<text font-size="20" x="768" y="429">Motorcontroller MCU</text>
+<text font-size="17" x="768" y="427">Motorcontroller MCU</text>
 <rect fill="#f4c99d" height="71" stroke="#555" width="119" x="628" y="207"></rect>
-<text font-size="13" x="688" y="236">12V</text><text font-size="13" x="688" y="255">DC-naar-DC-module</text>
+<text font-size="13" x="688" y="236">12V</text><text font-size="12" x="688" y="256">DC-naar-DC-module</text>
 <rect fill="#ff3000" height="72" stroke="#555" width="119" x="789" y="206"></rect>
-<text font-size="20" x="848" y="249">Accu BMS</text>
+<text font-size="18" x="848" y="248">Accu BMS</text>
 <rect fill="#f7f7f7" height="71" stroke="#555" width="119" x="789" y="82"></rect>
-<text font-size="13" x="849" y="109">Externe lader</text><text font-size="13" x="849" y="130">Externe accu</text>
+<text font-size="12.5" x="849" y="109">Externe lader</text><text font-size="12.5" x="849" y="130">Externe accu</text>
 <rect fill="#b3a5c8" height="71" stroke="#555" width="119" x="982" y="207"></rect>
-<text font-size="14" x="1042" y="249">Ingebouwde oplader</text>
-<rect fill="#f7f7f7" height="71" stroke="#555" width="119" x="947" y="386"></rect>
-<text font-size="13" x="1007" y="411">Linker/rechter chassis</text><text font-size="13" x="1007" y="430">Sfeerverlichting</text><text font-size="13" x="1007" y="449">Achterlicht</text>
+<text font-size="12.5" x="1042" y="245">Ingebouwde</text><text font-size="12.5" x="1042" y="262">oplader</text>
+<rect fill="#f7f7f7" height="71" stroke="#555" width="160" x="925" y="386"></rect>
+<text font-size="12" x="1005" y="411">Linker/rechter chassis</text><text font-size="12" x="1005" y="430">Sfeerverlichting</text><text font-size="12" x="1005" y="449">Achterlicht</text>
 <circle cx="768" cy="624" fill="#03b65e" r="58" stroke="#555"></circle>
 <text font-size="25" x="768" y="616">Motor</text>
-<!-- Arrows/labels kept in original locations -->
 <path d="M279 289 L279 349" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
 <path d="M433 289 L433 349" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
-<path d="M244 421 L145 421" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="187" y="414">12V voeding</text>
+<path d="M244 421 L155 421" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" x="199" y="413">12V voeding</text>
 <path d="M304 492 L304 542" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
 <path d="M432 492 L432 542" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
-<path d="M675 360 L675 279" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="663" y="323">Accuvoeding</text>
-<path d="M737 278 L737 360" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="744" y="324">12V ingang</text>
+<path d="M675 360 L675 279" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 666 319)" x="666" y="319">Accuvoeding</text>
+<path d="M737 278 L737 360" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 728 319)" x="728" y="319">12V ingang</text>
 <path d="M848 153 L848 206" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
 <path d="M982 242 L908 242" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
-<path d="M815 278 L815 360" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="802" y="324">Voedingskabel</text>
-<path d="M859 360 L859 278" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="874" y="324">Communicatie</text>
-<path d="M871 421 L947 421" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
-<path d="M724 483 L724 566" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="706" y="540">Voedingskabel</text>
-<path d="M798 566 L798 483" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="12" x="821" y="532">Hall &amp; temperatuur</text><text font-size="12" x="821" y="550">Hall &amp; NTC</text>
+<path d="M815 278 L815 360" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 806 319)" x="806" y="319">Voedingskabel</text>
+<path d="M859 360 L859 278" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 850 319)" x="850" y="319">Communicatie</text>
+<path d="M871 421 L925 421" marker-end="url(#ec-arrow-nl)" stroke="#444"></path>
+<path d="M724 483 L724 566" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" transform="rotate(-90 715 524)" x="715" y="524">Voedingskabel</text>
+<path d="M798 566 L798 483" marker-end="url(#ec-arrow-nl)" stroke="#444"></path><text font-size="11.5" x="862" y="532">Hall &amp; temperatuur</text><text font-size="11.5" x="862" y="550">Hall &amp; NTC</text>
 </g>
 </svg>
 </div>
@@ -2133,11 +2137,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">车辆关机后，后轮无法触发防盗报警</span>
 <span class="lang-en">After the scooter is powered off, moving the rear wheel does not trigger the anti-theft alarm.</span>
-</span><span class="lang-nl">Nadat de scooter is uitgeschakeld, activeert het verplaatsen van het achterwiel het antidiefstalalarm niet.</span>
+<span class="lang-nl">Nadat de scooter is uitgeschakeld, activeert het verplaatsen van het achterwiel het antidiefstalalarm niet.</span></span>
 <span class="faq-part">
 <span class="lang-zh">仪表</span>
 <span class="lang-en">Dashboard</span>
-</span><span class="lang-nl">Dashboard</span>
+<span class="lang-nl">Dashboard</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2210,11 +2214,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">用户在手机 APP 上点休眠后，APP 页面倒计时结束后，车辆并没有关机休眠。</span>
 <span class="lang-en">After Sleep is selected in the mobile APP and the countdown ends, the scooter does not power off and enter sleep mode.</span>
-</span><span class="lang-nl">Nadat de slaapstand is geselecteerd in de app en het aftellen eindigt, schakelt de scooter niet uit en gaat hij in de slaapstand.</span>
+<span class="lang-nl">Nadat de slaapstand is geselecteerd in de app en het aftellen eindigt, schakelt de scooter niet uit en gaat hij in de slaapstand.</span></span>
 <span class="faq-part">
 <span class="lang-zh">电池</span>
 <span class="lang-en">Battery</span>
-</span><span class="lang-nl">Accu</span>
+<span class="lang-nl">Accu</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2287,11 +2291,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">捏刹车轮子无法抱死</span>
 <span class="lang-en">The wheel cannot lock when the brake lever is applied.</span>
-</span><span class="lang-nl">Het wiel kan niet vergrendelen wanneer de remhendel wordt gebruikt.</span>
+<span class="lang-nl">Het wiel kan niet vergrendelen wanneer de remhendel wordt gebruikt.</span></span>
 <span class="faq-part">
 <span class="lang-zh">碟刹座/来令片</span>
 <span class="lang-en">Disc Brake Caliper / Brake Pads</span>
-</span><span class="lang-nl">Schijfremklauw / remblokken</span>
+<span class="lang-nl">Schijfremklauw / remblokken</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2385,11 +2389,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">更换仪表板后达不到最大速度</span>
 <span class="lang-en">The scooter cannot reach maximum speed after the Dashboard is replaced.</span>
-</span><span class="lang-nl">De scooter kan geen maximale snelheid bereiken nadat het dashboard is vervangen.</span>
+<span class="lang-nl">De scooter kan geen maximale snelheid bereiken nadat het dashboard is vervangen.</span></span>
 <span class="faq-part">
 <span class="lang-zh">仪表总成</span>
 <span class="lang-en">Dashboard Assembly</span>
-</span><span class="lang-nl">Dashboardunit</span>
+<span class="lang-nl">Dashboardunit</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2462,11 +2466,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">车辆开机静止状态下，转动车把，自动关机</span>
 <span class="lang-en">While the powered-on scooter is stationary, turning the handlebar causes the scooter to power off automatically.</span>
-</span><span class="lang-nl">Terwijl de ingeschakelde scooter stilstaat, zorgt het draaien van het stuur ervoor dat de scooter automatisch wordt uitgeschakeld.</span>
+<span class="lang-nl">Terwijl de ingeschakelde scooter stilstaat, zorgt het draaien van het stuur ervoor dat de scooter automatisch wordt uitgeschakeld.</span></span>
 <span class="faq-part">
 <span class="lang-zh">仪表总成</span>
 <span class="lang-en">Dashboard Assembly</span>
-</span><span class="lang-nl">Dashboardunit</span>
+<span class="lang-nl">Dashboardunit</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2539,11 +2543,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">双充时间过长</span>
 <span class="lang-en">Dual-charging time is too long.</span>
-</span><span class="lang-nl">Dubbele oplaadtijd is te lang.</span>
+<span class="lang-nl">Dubbele oplaadtijd is te lang.</span></span>
 <span class="faq-part">
 <span class="lang-zh">未填写</span>
 <span class="lang-en">Not provided</span>
-</span><span class="lang-nl">Niet verstrekt</span>
+<span class="lang-nl">Niet verstrekt</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2589,11 +2593,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">外挂电池升级失败</span>
 <span class="lang-en">External Battery firmware update fails.</span>
-</span><span class="lang-nl">Firmware-update van externe batterij mislukt.</span>
+<span class="lang-nl">Firmware-update van externe batterij mislukt.</span></span>
 <span class="faq-part">
 <span class="lang-zh">外挂电池/充电线</span>
 <span class="lang-en">External Battery / Charging Cable</span>
-</span><span class="lang-nl">Externe batterij / oplaadkabel</span>
+<span class="lang-nl">Externe batterij / oplaadkabel</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2658,11 +2662,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">车辆捏刹车、开转向灯、开前灯等动作，车辆会 10 号报警</span>
 <span class="lang-en">Applying the brake, turning on a turn signal, or turning on the headlight can trigger Error 10.</span>
-</span><span class="lang-nl">Het aanbrengen van de rem, het inschakelen van een richtingaanwijzer of het inschakelen van de koplamp kan Fout 10 activeren.</span>
+<span class="lang-nl">Het aanbrengen van de rem, het inschakelen van een richtingaanwijzer of het inschakelen van de koplamp kan Fout 10 activeren.</span></span>
 <span class="faq-part">
 <span class="lang-zh">转向灯/前灯/尾灯</span>
 <span class="lang-en">Turn Signal / Headlight / Taillight</span>
-</span><span class="lang-nl">Richtingaanwijzer / Koplamp / Achterlamp</span>
+<span class="lang-nl">Richtingaanwijzer / Koplamp / Achterlamp</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
@@ -2810,11 +2814,11 @@ G3 - KickScooter MAX G3 Series - Disc brake rotor | Segway</a></li></ul>
 <span class="faq-title">
 <span class="lang-zh">前灯/前转向灯不亮</span>
 <span class="lang-en">The headlight / front turn signal does not illuminate.</span>
-</span><span class="lang-nl">De koplamp / voorste richtingaanwijzer verlicht niet.</span>
+<span class="lang-nl">De koplamp / voorste richtingaanwijzer verlicht niet.</span></span>
 <span class="faq-part">
 <span class="lang-zh">电源模块</span>
 <span class="lang-en">Power Module</span>
-</span><span class="lang-nl">Voedingsmodule</span>
+<span class="lang-nl">Voedingsmodule</span></span>
 </summary>
 <div class="faq-case-body">
 <div class="faq-case-meta">
