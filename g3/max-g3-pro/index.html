@@ -3128,13 +3128,20 @@ document.querySelectorAll('.module-menu-links a').forEach(a=>{
     });
     attrs(lang);
     document.title = TITLES[lang] || TITLES.zh;
-    try{localStorage.setItem('g3-manual-lang',lang)}catch(e){}
+    try{localStorage.setItem('g3-manual-lang',lang);localStorage.setItem('g3-manual-lang-set','1')}catch(e){}
     requestAnimationFrame(()=>window.repaintG3Flows&&window.repaintG3Flows());
     requestAnimationFrame(()=>requestAnimationFrame(()=>window.fitG3Flowcharts&&window.fitG3Flowcharts()));
   }
   buttons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-  let saved='en'; try{saved=localStorage.getItem('g3-manual-lang')||'en'}catch(e){}
-  if(saved==='nl') saved='zh';
+  let saved='en';
+  try{
+    // 仅当用户曾主动切换过语言（写入过标记）时，才信任 localStorage；
+    // 否则忽略旧版默认可能残留的 'zh'，统一回退到英文默认
+    if(localStorage.getItem('g3-manual-lang-set')){
+      saved = localStorage.getItem('g3-manual-lang') || 'en';
+      if(saved==='nl') saved='zh';
+    }
+  }catch(e){}
   setLang(saved);
 })();
 </script>
